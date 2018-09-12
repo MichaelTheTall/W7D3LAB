@@ -35,7 +35,7 @@ CountryInfoView.prototype.render = function(info){
   const infoLanguages = document.createElement('ul');
   info.languages.forEach((i) => {
     const list = document.createElement('li');
-    list.textContent = i;
+    list.textContent = i.name;
     infoLanguages.appendChild(list);
   })
   this.container.appendChild(infoLanguages);

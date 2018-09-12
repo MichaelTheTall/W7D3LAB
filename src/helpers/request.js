@@ -1,4 +1,4 @@
-const request = function (url) {
+const Request = function (url) {
   this.url = url;
 };
 

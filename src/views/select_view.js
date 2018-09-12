@@ -7,11 +7,13 @@ const SelectView = function (element) {
 SelectView.prototype.bindEvents = function () {
   PubSub.subscribe("Countries:all-countries-ready", (evt) => {
     const allCountries = evt.detail;
-    this.populate(allCoutnries);
+    // console.log(allCountries);
+    this.populate(allCountries);
   });
 
   this.element.addEventListener("change", (evt) => {
     const selectedIndex = evt.target.value;
+    // console.log(selectedIndex);
     PubSub.publish('SelectView:change', selectedIndex);
   });
 
@@ -27,8 +29,5 @@ SelectView.prototype.populate = function (countryData) {
   });
 
 };
-
-
-
 
 module.exports = SelectView;
