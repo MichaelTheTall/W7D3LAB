@@ -13,24 +13,36 @@ CountryInfoView.prototype.bindEvents = function(){
 };
 
 CountryInfoView.prototype.render = function(info){
-  this.container.innerHTML = '';
+  const infoContainer = document.querySelector('.infobox');
+  infoContainer.innerHTML = '';
+
+  const imgContainer = document.querySelector('.imgbox');
+  imgContainer.innerHTML = '';
 
   const infoHeader = document.createElement('h2');
-  infoHeader.textContent = info.name;
-  this.container.appendChild(infoHeader);
+  if (info.name === info.nativeName) {
+    infoHeader.textContent = info.name;
+  } else {
+    infoHeader.textContent = `${info.name} - ${info.nativeName}`;
+  }
+  infoContainer.appendChild(infoHeader);
 
   const infoFlag = document.createElement('img');
   infoFlag.src = info.flag;
   infoFlag.alt = `The ${info.demonym} flag`
-  this.container.appendChild(infoFlag);
+  imgContainer.appendChild(infoFlag);
+
+  const infoRegionHeader = document.createElement('h3');
+  infoRegionHeader.textContent = 'Region:';
+  infoContainer.appendChild(infoRegionHeader);
 
   const infoRegion = document.createElement('p');
-  infoRegion.textContent = `Region: ${info.region}`;
-  this.container.appendChild(infoRegion);
+  infoRegion.textContent = info.region;
+  infoContainer.appendChild(infoRegion);
 
   const infoLangHeader = document.createElement('h3');
   infoLangHeader.textContent = 'Languages:';
-  this.container.appendChild(infoLangHeader);
+  infoContainer.appendChild(infoLangHeader);
 
   const infoLanguages = document.createElement('ul');
   info.languages.forEach((i) => {
@@ -38,7 +50,7 @@ CountryInfoView.prototype.render = function(info){
     list.textContent = i.name;
     infoLanguages.appendChild(list);
   })
-  this.container.appendChild(infoLanguages);
+  infoContainer.appendChild(infoLanguages);
 
 };
 
